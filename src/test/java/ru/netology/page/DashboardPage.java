@@ -21,12 +21,12 @@ public class DashboardPage {
     }
 
     public TransferPage card1Button() {
-        card1.click();
+        card1.find("button").click();
         return new TransferPage();
     }
 
     public TransferPage card2Button() {
-        card2.click();
+        card2.find("button").click();
         return new TransferPage();
     }
 

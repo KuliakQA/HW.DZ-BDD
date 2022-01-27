@@ -24,7 +24,7 @@ public class MoneyTransferTest {
     }
 
     @Test
-    void shouldTransferMoneyBetweenOwnCards() {
+    void shouldTransferMoneyCardNr1() {
         var card1BalanceStart = dashboardPage.getCard1Balance();
         var card2BalanceStart = dashboardPage.getCard2Balance();
         int amount = 10_000;
@@ -33,6 +33,21 @@ public class MoneyTransferTest {
         transfer.transferFromCardToCard(amount, getCard2Number());
         var card1BalanceResult = card1BalanceStart + amount;
         var card2BalanceResult = card2BalanceStart - amount;
+
+        assertEquals(card1BalanceResult, dashboardPage.getCard1Balance());
+        assertEquals(card2BalanceResult, dashboardPage.getCard2Balance());
+    }
+
+    @Test
+    void shouldTransferMoneyCardNr2() {
+        var card1BalanceStart = dashboardPage.getCard1Balance();
+        var card2BalanceStart = dashboardPage.getCard2Balance();
+        int amount = 20_000;
+
+        var transfer = dashboardPage.card2Button();
+        transfer.transferFromCardToCard(amount, getCard1Number());
+        var card1BalanceResult = card1BalanceStart - amount;
+        var card2BalanceResult = card2BalanceStart + amount;
 
         assertEquals(card1BalanceResult, dashboardPage.getCard1Balance());
         assertEquals(card2BalanceResult, dashboardPage.getCard2Balance());
