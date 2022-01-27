@@ -16,9 +16,6 @@ public class TransferPage {
     private SelenideElement replenishButton = $("[data-test-id='action-transfer']");
     private SelenideElement cancelButton = $("[data-test-id='action-cancel']");
 
-    public TransferPage() {
-        titleText.shouldBe(visible);
-    }
 
     public void transferFromCardToCard(int amount, DataHelper.CardInfo from) {
         sum.setValue(String.valueOf(amount));
