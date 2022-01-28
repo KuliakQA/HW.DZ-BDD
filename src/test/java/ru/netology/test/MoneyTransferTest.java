@@ -24,10 +24,10 @@ public class MoneyTransferTest {
     }
 
     @Test
-    void shouldTransferMoneyCardNr1() {
+    void shouldTransferMoneyToCard1() {
         var card1BalanceStart = dashboardPage.getCard1Balance();
         var card2BalanceStart = dashboardPage.getCard2Balance();
-        int amount = 10_000;
+        int amount = 8_010;
 
         var transfer = dashboardPage.card1Button();
         transfer.transferFromCardToCard(amount, getCard2Number());
@@ -39,10 +39,10 @@ public class MoneyTransferTest {
     }
 
     @Test
-    void shouldTransferMoneyCardNr2() {
+    void shouldTransferMoneyToCard2() {
         var card1BalanceStart = dashboardPage.getCard1Balance();
         var card2BalanceStart = dashboardPage.getCard2Balance();
-        int amount = 20_000;
+        int amount = 5_000;
 
         var transfer = dashboardPage.card2Button();
         transfer.transferFromCardToCard(amount, getCard1Number());
@@ -51,6 +51,15 @@ public class MoneyTransferTest {
 
         assertEquals(card1BalanceResult, dashboardPage.getCard1Balance());
         assertEquals(card2BalanceResult, dashboardPage.getCard2Balance());
+    }
+
+    @Test
+    public void shouldNotTransferMoneyIfAmountMoreBalance() {
+        int amount = 80_010;
+
+        var transfer = dashboardPage.card1Button();
+        transfer.transferFromCardToCard(amount, getCard2Number());
+        transfer.getErrorLimit();
     }
 
 }

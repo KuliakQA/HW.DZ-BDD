@@ -23,5 +23,10 @@ public class TransferPage {
         replenishButton.click();
         new DashboardPage();
     }
+
+    public void getErrorLimit() {
+        $(byText("Сумма превышает допустимый лимит!"))
+                .shouldBe(Condition.visible);
+    }
 }
 
